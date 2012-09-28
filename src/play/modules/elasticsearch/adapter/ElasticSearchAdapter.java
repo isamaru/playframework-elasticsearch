@@ -150,7 +150,7 @@ public abstract class ElasticSearchAdapter {
 					.setSource(contentBuilder).execute().actionGet();
 
 			// Log Debug
-			Logger.info("Index Response: %s", response);
+			Logger.debug("Index Response: %s", response);
 
 		} finally {
 			if (contentBuilder != null) {

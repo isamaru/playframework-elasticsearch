@@ -1,12 +1,12 @@
-/** 
+/**
  * Copyright 2011 The Apache Software Foundation
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -266,13 +266,13 @@ public class ElasticSearchPlugin extends PlayPlugin {
 	@Override
 	public void onEvent(final String message, final Object context) {
 		// Log Debug
-		Logger.info("Received %s Event, Object: %s", message, context);
+		Logger.trace("Received %s Event, Object: %s", message, context);
 
 		if (isInterestingEvent(message) == false) {
 			return;
 		}
 
-		Logger.debug("Processing %s Event", message);
+		Logger.debug("Processing %s Event, Object: %s", message, context);
 
 		// Check if object is searchable
 		if (MappingUtil.isSearchable(context.getClass()) == false) {
@@ -299,7 +299,7 @@ public class ElasticSearchPlugin extends PlayPlugin {
 		}
 
 		// Sync with Elastic Search
-		Logger.info("Elastic Search Index Event: %s", event);
+		Logger.debug("Elastic Search Index Event: %s", event);
 		if (event != null) {
 			final ElasticSearchDeliveryMode deliveryMode = getDeliveryMode();
 			final IndexEventHandler handler = deliveryMode.getHandler();
